@@ -1,0 +1,15 @@
+<div style="display: flex; align-items: center; justify-self: flex-start">
+  <h1 [routerLink]="['products']" style="cursor: pointer; margin-right: 1rem">
+    Temu from AliExpress
+  </h1>
+</div>
+
+<div style="display: flex">
+  <div style="width: 60%">
+    <router-outlet></router-outlet>
+  </div>
+  <div style="width: 40%; border-left: 1px solid black; padding: 0 1rem">
+    <h3>Cart</h3>
+    <app-cart></app-cart>
+  </div>
+</div>
