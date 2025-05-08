@@ -1,1 +1,6 @@
-<p>cart works!</p>
+@for (cartItem of cartItems$ | async; track $index) {
+  <div style="display: flex; align-items: center">
+    <p style="margin-right: 1rem">{{ cartItem.title }}</p>
+    <button mat-button (click)="removeFromCart(cartItem.id)">Remove</button>
+  </div>
+}

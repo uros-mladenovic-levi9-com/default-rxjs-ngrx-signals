@@ -1,1 +1,19 @@
-<p>products works!</p>
+<div class="products-list">
+  @for (product of products$ | async; track $index) {
+    <div class="product-card" [routerLink]="['/products', product.id]">
+      <div class="product-image-wrapper">
+        <img
+          class="product-image"
+          [src]="product.image"
+          [alt]="product.title"
+        />
+      </div>
+      <div class="product-details">
+        <p class="product-details-row">
+          {{ product.title }}
+        </p>
+        <p class="product-details-row">Price: ${{ product.price }}</p>
+      </div>
+    </div>
+  }
+</div>
