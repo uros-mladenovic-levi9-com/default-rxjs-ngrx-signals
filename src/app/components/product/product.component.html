@@ -1,1 +1,12 @@
-<p>product works!</p>
+@if (product) {
+  <div class="product">
+    <img class="product-image" [src]="product.image" [alt]="product.title" />
+    <div>
+      <h2>{{ product.title }}</h2>
+      <button mat-button (click)="addToCart(product)">Add to cart</button>
+      <p style="color: green">${{ product.price }}</p>
+      <p>Category: {{ product.category }}</p>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+}
