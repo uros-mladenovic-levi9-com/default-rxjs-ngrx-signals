@@ -1,1 +1,18 @@
-<p>product works!</p>
+@if (vm$ | async; as vm) {
+  <div class="product">
+    <img
+      class="product-image"
+      [src]="vm.selectedProduct?.image"
+      [alt]="vm.selectedProduct?.title"
+    />
+    <div>
+      <h2>{{ vm.selectedProduct?.title }}</h2>
+      <button mat-button (click)="addToCart(vm.selectedProduct)">
+        Add to cart
+      </button>
+      <p style="color: green">${{ vm.selectedProduct?.price }}</p>
+      <p>Category: {{ vm.selectedProduct?.category }}</p>
+      <p>{{ vm.selectedProduct?.description }}</p>
+    </div>
+  </div>
+}

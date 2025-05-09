@@ -1,0 +1,10 @@
+.product {
+  display: flex;
+}
+
+.product-image {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  margin-right: 1rem;
+}
