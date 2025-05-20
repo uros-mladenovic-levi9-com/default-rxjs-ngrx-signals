@@ -1,13 +1,14 @@
 import {
   patchState,
   signalStore,
+  withComputed,
   withHooks,
   withMethods,
   withProps,
   withState,
 } from '@ngrx/signals';
 import { Product } from '../model/products.model';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { CartService } from '../service/cart.service';
 
 type CartState = {
@@ -24,6 +25,11 @@ export const CartStore = signalStore(
   withProps(() => ({
     cartService: inject(CartService),
   })),
+  withComputed((store) => {
+    const numberOfItems = computed(() => store.cartItems().length);
+
+    return { numberOfItems };
+  }),
   withMethods((store) => {
     const getCartItems = () => {
       const cartItems = store.cartService.getCart();
