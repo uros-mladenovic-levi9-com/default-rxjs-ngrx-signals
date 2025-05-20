@@ -1,4 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { cartSelectors } from './cart.selectors';
 import { AsyncPipe } from '@angular/common';
@@ -10,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [AsyncPipe, MatButtonModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartComponent implements OnInit {
   readonly store = inject(Store);
