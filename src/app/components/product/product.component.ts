@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ProductComponentStore } from './product.component.store';
 import { Product } from '../../model/products.model';
@@ -10,6 +10,7 @@ import { CartStore } from '../../state/cart.state';
   providers: [ProductComponentStore],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent {
   readonly productComponentStore = inject(ProductComponentStore);
