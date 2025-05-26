@@ -12,6 +12,7 @@ import { inject } from '@angular/core';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
+import { Router } from '@angular/router';
 
 type ProductsState = {
   products: Product[];
@@ -25,6 +26,7 @@ export const ProductsComponentStore = signalStore(
   withState(initialState),
   withProps(() => ({
     productsService: inject(ProductsService),
+    router: inject(Router),
   })),
   withMethods((store) => {
     const getAllProducts = rxMethod<void>(
@@ -44,8 +46,13 @@ export const ProductsComponentStore = signalStore(
       ),
     );
 
+    const navigateToProductDetails = (productId: number) => {
+      store.router.navigate(['/products', productId]);
+    };
+
     return {
       getAllProducts,
+      navigateToProductDetails,
     };
   }),
   withHooks({

@@ -1,19 +1,10 @@
 <div class="products-list">
   @for (product of productsComponentStore.products(); track $index) {
-    <div class="product-card" [routerLink]="['/products', product.id]">
-      <div class="product-image-wrapper">
-        <img
-          class="product-image"
-          [src]="product.image"
-          [alt]="product.title"
-        />
-      </div>
-      <div class="product-details">
-        <p class="product-details-row">
-          {{ product.title }}
-        </p>
-        <p class="product-details-row">Price: ${{ product.price }}</p>
-      </div>
-    </div>
+    <app-product-card
+      [product]="product"
+      (productCardClicked)="
+        productsComponentStore.navigateToProductDetails($event)
+      "
+    ></app-product-card>
   }
 </div>
