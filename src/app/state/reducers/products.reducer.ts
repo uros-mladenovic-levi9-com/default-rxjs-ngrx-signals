@@ -30,6 +30,10 @@ export const productsReducer = createReducer(
     ...state,
     selectedProduct: null,
   })),
+  on(productsActions.clearSelectedProduct, (state) => ({
+    ...state,
+    selectedProduct: null,
+  })),
 );
 
 export const productsFeature = createFeature({

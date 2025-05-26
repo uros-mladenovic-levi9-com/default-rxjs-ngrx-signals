@@ -10,5 +10,6 @@ export const productsActions = createActionGroup({
     getProductById: props<{ productId: number }>(),
     getProductByIdOnSuccess: props<{ product: Product }>(),
     getProductByIdOnFailure: props<{ error: string }>(),
+    clearSelectedProduct: emptyProps(),
   },
 });

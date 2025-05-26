@@ -3,6 +3,7 @@ import {
   Component,
   DestroyRef,
   inject,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -24,7 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   readonly store = inject(Store);
   readonly route = inject(ActivatedRoute);
   readonly destroyRef = inject(DestroyRef);
@@ -39,6 +40,10 @@ export class ProductComponent implements OnInit {
       .subscribe((id) => {
         this.store.dispatch(productsActions.getProductById({ productId: id }));
       });
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(productsActions.clearSelectedProduct());
   }
 
   addToCart(product: Product | null): void {
