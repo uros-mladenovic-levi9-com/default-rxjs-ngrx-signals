@@ -8,12 +8,13 @@ import {
 } from '@angular/core';
 import { Product } from '../../model/products.model';
 import { ProductsService } from '../../service/products.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   selector: 'app-products',
-  imports: [RouterModule],
+  imports: [RouterModule, ProductCardComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
   standalone: true,
@@ -25,6 +26,7 @@ export class ProductsComponent implements OnInit {
   readonly productsService = inject(ProductsService);
   readonly cdr = inject(ChangeDetectorRef);
   readonly destroyRef = inject(DestroyRef);
+  readonly router = inject(Router);
 
   ngOnInit(): void {
     this.productsService
@@ -34,5 +36,9 @@ export class ProductsComponent implements OnInit {
         this.products = products;
         this.cdr.detectChanges();
       });
+  }
+
+  navigateToProductDetails(productId: number): void {
+    this.router.navigate(['/products', productId]);
   }
 }
