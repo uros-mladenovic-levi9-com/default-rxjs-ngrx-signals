@@ -1,1 +1,13 @@
-<p>product-card works!</p>
+@if (product) {
+  <div class="product-card" (click)="productCardClicked.emit(product.id)">
+    <div class="product-image-wrapper">
+      <img class="product-image" [src]="product.image" [alt]="product.title" />
+    </div>
+    <div class="product-details">
+      <p class="product-details-row">
+        {{ product.title }}
+      </p>
+      <p class="product-details-row">Price: ${{ product.price }}</p>
+    </div>
+  </div>
+}
